@@ -1,0 +1,95 @@
+---
+title: "Question1"
+format: pdf
+editor: visual
+---
+
+# Question 1: Student Performance Analysis
+
+```{r}
+data <- read.csv("MTH211A Form.csv")
+data
+```
+
+```{r}
+print("Average Class 10 Percentage:")
+class10 <- as.numeric(data[-8,2]) #8th entry is in cgpa
+print(mean(class10))
+print("Median Class 10 Percentage:")
+print(median(class10))
+print("Minimum Class 10 Percentage:")
+print(min(class10))
+print("Maximum Class 10 Percentage:")
+print(max(class10))
+```
+
+```{r}
+print("Average Class 12 Percentage:")
+class12 <- as.numeric(data[,3])
+print(mean(class12))
+print("Median Class 12 Percentage:")
+print(median(class12))
+print("Minimum Class 12 Percentage:")
+print(min(class12))
+print("Maximum Class 12 Percentage:")
+print(max(class12))
+```
+
+```{r}
+print("Average CPI:")
+cpi <- as.numeric(data[,4])
+print(mean(cpi))
+print("Median CPI:")
+print(median(cpi))
+print("Minimum CPI:")
+print(min(cpi))
+print("Maximum CPI:")
+print(max(cpi))
+```
+
+```{r}
+boxplot(class10, main = "Class 10 Percentage Boxplot", ylab = "Percentage")
+```
+
+```{r}
+boxplot(class12, main = "Current class 12 Percentage Boxplot", ylab = "Percentage")
+```
+
+```{r}
+boxplot(cpi, main = "Current CPI Boxplot", ylab = "CPI")
+```
+
+![](Screenshot%20(381).png)
+
+![](Screenshot%20(382).png)
+
+![](Screenshot%20(390).png)
+
+![](Screenshot%20(383).png)
+
+![](Screenshot%20(384).png)
+
+![](Screenshot%20(385).png)
+
+![](Screenshot%20(386).png)
+
+```{r}
+prevHr <- as.numeric(data[-c(15,19,20,27,34),12])
+print("The average study hours during JEE preparation were:")
+print(mean(prevHr))
+#The average study time has decreased to more than half
+```
+
+![](Screenshot%20(387).png)
+
+```{r}
+currHr <- as.numeric(data[-c(11,15,19,20,34),13])
+print("The current average study hours are:")
+print(mean(currHr))
+```
+
+![](Screenshot%20(388).png)
+
+Most of the students think that their performance has remained same or got worse.
+
+![](Screenshot%20(389).png)
