@@ -192,8 +192,8 @@ Most of the students think that their performance has remained same or got worse
 
 ```{r}
 #| echo: false
-print( paste("Pearson's correlation coefficient: "), cor(class12, class10, use="complete.obs"))
-print( paste("Spearman's rank correlation: "), cor(class12, class10, use="complete.obs", method = "spearman"))
+print( paste("Pearson's correlation coefficient: ", cor(class12, class10, use="complete.obs")))
+print( paste("Spearman's rank correlation: ", cor(class12, class10, use="complete.obs", method = "spearman")))
 
 ```
 
@@ -203,8 +203,8 @@ We observe that there is moderate correlation, according to both methods of meas
 
 ```{r}
 #| echo: false
-print( paste("Pearson's correlation coefficient: "), cor(cpi, class10, use="complete.obs"))
-print( paste("Spearman's rank correlation: "), cor(cpi, class10, use="complete.obs", method = "spearman"))
+print( paste("Pearson's correlation coefficient: ", cor(cpi, class10, use="complete.obs")))
+print( paste("Spearman's rank correlation: ", cor(cpi, class10, use="complete.obs", method = "spearman")))
 ```
 
 We again observe that there is moderate correlation, according to both methods of measuring correlation, between CPI and 10th percentages.
@@ -213,8 +213,8 @@ We again observe that there is moderate correlation, according to both methods o
 
 ```{r}
 #| echo: false
-print( paste("Pearson's correlation coefficient: "), cor(cpi, class10, use="complete.obs"))
-print( paste("Spearman's rank correlation: "), cor(cpi, class10, use="complete.obs", method = "spearman"))
+print( paste("Pearson's correlation coefficient: ", cor(cpi, class10, use="complete.obs")))
+print( paste("Spearman's rank correlation: ", cor(cpi, class10, use="complete.obs", method = "spearman")))
 ```
 
 We observe that there is negligible correlation, according to both methods of measuring correlation, between CPI and 10th percentages.
@@ -225,7 +225,7 @@ We observe that there is negligible correlation, according to both methods of me
 #| echo: false
 main <- as.numeric(data[,5])
 adv <- as.numeric(data[,6])
-print( paste("Spearman's rank correlation: "), cor(adv, main, use="complete.obs", method = "spearman"))
+print( paste("Spearman's rank correlation: ", cor(adv, main, use="complete.obs", method = "spearman")))
 ```
 
 As expected, there is a relatively high degree of correlation between JEE Main and Advance ranks, measured according to Spearman's rank correlation.
@@ -234,7 +234,7 @@ As expected, there is a relatively high degree of correlation between JEE Main a
 
 ```{r}
 #| echo: false
-print( paste("Spearman's rank correlation: "), cor(adv, cpi, use="complete.obs", method = "spearman"))
+print( paste("Spearman's rank correlation: ", cor(adv, cpi, use="complete.obs", method = "spearman")))
 ```
 
 There is a low to moderate level correlation between CPI and JEE advance rank. The negative sign indicates that lower in magnitude JEE Advanced rank in general correlates to some extent with higher CPI.
@@ -243,7 +243,7 @@ There is a low to moderate level correlation between CPI and JEE advance rank. T
 
 ```{r}
 #| echo: false
-print( paste("Spearman's rank correlation: "), cor(main, cpi, use="complete.obs", method = "spearman"))
+print( paste("Spearman's rank correlation: ", cor(main, cpi, use="complete.obs", method = "spearman")))
 
 ```
 

@@ -156,7 +156,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, interior hidden, sharp corners, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, frame hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, borderline west={3pt}{0pt}{shadecolor}, frame hidden, boxrule=0pt, breakable, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -173,7 +173,7 @@ form}.
 
 Based on the responses to these we tried to extract basic insights about
 possible correlation between academic performance in boards, JEE and
-IITK, as measured by percentage, JEE Advance All India rank and CPI
+IITK, as measured by percentage, JEE Advanced All India rank and CPI
 respectively.
 
 It had the following questions:
@@ -226,6 +226,7 @@ errors in filling the form like missing essential data.
                                                          
                                                          
                                                          
+                                                         
  What.was.your.percentage.in.class.12. What.is.your.current.CPI.
  Min.   :81.60                         Min.   :5.300            
  1st Qu.:91.05                         1st Qu.:6.825            
@@ -233,17 +234,20 @@ errors in filling the form like missing essential data.
  Mean   :92.89                         Mean   :7.491            
  3rd Qu.:95.95                         3rd Qu.:8.185            
  Max.   :98.40                         Max.   :9.100            
+                                                                
  What.was.your.JEE.Mains.rank...AIR. What.was.your.JEE.Advanced.rank...AIR.
- Length:34                           Length:34                             
- Class :character                    Class :character                      
- Mode  :character                    Mode  :character                      
-                                                                           
-                                                                           
-                                                                           
+ Min.   :  280                       Min.   :  837                         
+ 1st Qu.: 2620                       1st Qu.: 1445                         
+ Median : 4180                       Median : 3391                         
+ Mean   : 7680                       Mean   : 4863                         
+ 3rd Qu.:12081                       3rd Qu.: 5722                         
+ Max.   :28000                       Max.   :21277                         
+ NA's   :2                           NA's   :2                             
  Which.other.exams.did.you.appear.for. Which.Coaching.did.you.take..if.any..
  Length:34                             Length:34                            
  Class :character                      Class :character                     
  Mode  :character                      Mode  :character                     
+                                                                            
                                                                             
                                                                             
                                                                             
@@ -254,10 +258,12 @@ errors in filling the form like missing essential data.
                                                                 
                                                                 
                                                                 
+                                                                
  Where.did.you.take.coaching. How.many.attempts.did.you.take.
  Length:34                    Length:34                      
  Class :character             Class :character               
  Mode  :character             Mode  :character               
+                                                             
                                                              
                                                              
                                                              
@@ -268,10 +274,12 @@ errors in filling the form like missing essential data.
                                                                            
                                                                            
                                                                            
+                                                                           
  How.many.hours.do.you.study.on.average.daily.currently.
  Length:34                                              
  Class :character                                       
  Mode  :character                                       
+                                                        
                                                         
                                                         
                                                         
@@ -282,6 +290,7 @@ errors in filling the form like missing essential data.
                                                                             
                                                                             
                                                                             
+                                                                            
  How.would.you.score.yourself.among.fellow.batchmates.
  Min.   : 1.000                                       
  1st Qu.: 5.000                                       
@@ -289,6 +298,7 @@ errors in filling the form like missing essential data.
  Mean   : 6.206                                       
  3rd Qu.: 8.000                                       
  Max.   :10.000                                       
+                                                      
 \end{verbatim}
 
 \hypertarget{form-responses}{%
@@ -297,12 +307,20 @@ errors in filling the form like missing essential data.
 \hypertarget{class-10-percentage}{%
 \subsection{Class 10 percentage}\label{class-10-percentage}}
 
+We now look the mean, median, and the minimum and maximum values of
+class 10 percentage. We also look at the distribution's quartiles and
+check for outliers through a boxplot.
+
 \begin{verbatim}
 [1] "Average Class 10 Percentage:"
 \end{verbatim}
 
 \begin{verbatim}
-[1] 93.64152
+Warning: NAs introduced by coercion
+\end{verbatim}
+
+\begin{verbatim}
+[1] NA
 \end{verbatim}
 
 \begin{verbatim}
@@ -310,7 +328,7 @@ errors in filling the form like missing essential data.
 \end{verbatim}
 
 \begin{verbatim}
-[1] 94
+[1] NA
 \end{verbatim}
 
 \begin{verbatim}
@@ -318,7 +336,7 @@ errors in filling the form like missing essential data.
 \end{verbatim}
 
 \begin{verbatim}
-[1] 88
+[1] NA
 \end{verbatim}
 
 \begin{verbatim}
@@ -326,11 +344,23 @@ errors in filling the form like missing essential data.
 \end{verbatim}
 
 \begin{verbatim}
-[1] 98
+[1] NA
 \end{verbatim}
+
+\includegraphics{Question1_files/figure-pdf/unnamed-chunk-2-1.pdf}
+
+The histogram does not taper at extremes, and is in fact quite flat,
+except a peak at 96-97\%. This indicates that the distribution of 10th
+marks is quite different from those variables that do.
+
+\includegraphics{Question1_files/figure-pdf/unnamed-chunk-3-1.pdf}
 
 \hypertarget{class-12-percentage}{%
 \subsection{Class 12 percentage}\label{class-12-percentage}}
+
+We now look the mean, median, and the minimum and maximum values of
+class 12 percentage. We also look at the distribution's quartiles and
+check for outliers through a boxplot.
 
 \begin{verbatim}
 [1] "Average Class 12 Percentage:"
@@ -364,8 +394,20 @@ errors in filling the form like missing essential data.
 [1] 98.4
 \end{verbatim}
 
-\hypertarget{cpi-summary-statistics}{%
-\subsection{CPI Summary Statistics}\label{cpi-summary-statistics}}
+\includegraphics{Question1_files/figure-pdf/unnamed-chunk-4-1.pdf}
+
+We can also inspect the distribution through a histogram and see that it
+tapers at extremes. It is somewhat left skewed, with the modal class
+being 94-96.
+
+\includegraphics{Question1_files/figure-pdf/unnamed-chunk-5-1.pdf}
+
+\hypertarget{cpi}{%
+\subsection{CPI}\label{cpi}}
+
+We now look the mean, median, and the minimum and maximum values of CPI.
+We also look at the distribution's quartiles and check for outliers
+through a boxplot.
 
 \begin{verbatim}
 [1] "Average CPI:"
@@ -399,13 +441,18 @@ errors in filling the form like missing essential data.
 [1] 9.1
 \end{verbatim}
 
-\includegraphics{Question1_files/figure-pdf/unnamed-chunk-4-1.pdf}
-
-\includegraphics{Question1_files/figure-pdf/unnamed-chunk-5-1.pdf}
-
 \includegraphics{Question1_files/figure-pdf/unnamed-chunk-6-1.pdf}
 
+We can also look at the distribution through a histogram and see that it
+is higher in the middle and tapers at extremes.
+
 \includegraphics{Question1_files/figure-pdf/unnamed-chunk-7-1.pdf}
+
+\hypertarget{jee-mains-rank}{%
+\subsection{JEE Mains rank}\label{jee-mains-rank}}
+
+Since this is discrete data that deals with ranking, we treat it
+differently than the last 3 fields.
 
 \includegraphics{Screenshot (381).png}
 
@@ -445,6 +492,91 @@ Most of the students think that their performance has remained same or
 got worse.
 
 \includegraphics{Screenshot (389).png}
+
+\hypertarget{correlation-analysis}{%
+\section{Correlation analysis}\label{correlation-analysis}}
+
+\hypertarget{class-12th-and-10th-percentages}{%
+\subsection{Class 12th and 10th
+percentages}\label{class-12th-and-10th-percentages}}
+
+\begin{verbatim}
+[1] "Pearson's correlation coefficient:  0.500166945727063"
+\end{verbatim}
+
+\begin{verbatim}
+[1] "Spearman's rank correlation:  0.507027000457351"
+\end{verbatim}
+
+We observe that there is moderate correlation, according to both methods
+of measuring correlation, in 10th and 12th percentages.
+
+\hypertarget{cpi-and-class-10th-percentage}{%
+\subsection{CPI and Class 10th
+percentage}\label{cpi-and-class-10th-percentage}}
+
+\begin{verbatim}
+[1] "Pearson's correlation coefficient:  0.543537626931894"
+\end{verbatim}
+
+\begin{verbatim}
+[1] "Spearman's rank correlation:  0.559983274253716"
+\end{verbatim}
+
+We again observe that there is moderate correlation, according to both
+methods of measuring correlation, between CPI and 10th percentages.
+
+\hypertarget{cpi-and-class-12th-percentage}{%
+\subsection{CPI and Class 12th
+percentage}\label{cpi-and-class-12th-percentage}}
+
+\begin{verbatim}
+[1] "Pearson's correlation coefficient:  0.543537626931894"
+\end{verbatim}
+
+\begin{verbatim}
+[1] "Spearman's rank correlation:  0.559983274253716"
+\end{verbatim}
+
+We observe that there is negligible correlation, according to both
+methods of measuring correlation, between CPI and 10th percentages.
+
+\hypertarget{jee-main-and-advance-ranks}{%
+\subsection{JEE Main and Advance
+ranks}\label{jee-main-and-advance-ranks}}
+
+\begin{verbatim}
+[1] "Spearman's rank correlation:  0.731451612903226"
+\end{verbatim}
+
+As expected, there is a relatively high degree of correlation between
+JEE Main and Advance ranks, measured according to Spearman's rank
+correlation.
+
+\hypertarget{cpi-and-jee-advanced-ranks}{%
+\subsection{CPI and JEE Advanced
+ranks}\label{cpi-and-jee-advanced-ranks}}
+
+\begin{verbatim}
+[1] "Spearman's rank correlation:  -0.480594891830063"
+\end{verbatim}
+
+There is a low to moderate level correlation between CPI and JEE advance
+rank. The negative sign indicates that lower in magnitude JEE Advanced
+rank in general correlates to some extent with higher CPI.
+
+\hypertarget{cpi-and-jee-mains-ranks}{%
+\subsection{CPI and JEE Mains ranks}\label{cpi-and-jee-mains-ranks}}
+
+\begin{verbatim}
+[1] "Spearman's rank correlation:  -0.438899348546104"
+\end{verbatim}
+
+There is again, a low to moderate level correlation between CPI and JEE
+Mains rank. The negative sign indicates that lower in magnitude JEE
+Mains rank in general correlates to some extent with higher CPI. The
+correlation in this case is lower in magnitude than that of CPI with JEE
+Advance rank.
 
 
 
