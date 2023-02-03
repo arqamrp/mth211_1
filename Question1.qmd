@@ -11,7 +11,7 @@ toc: true
 
 The data was collected using a [Google form](https://docs.google.com/forms/d/e/1FAIpQLSed7HoFO2fe1waPy8_l55DD_4hx3z9IlTguyRA7BvAb6YVOvA/viewform).
 
-Based on the responses to these we tried to extract basic insights about possible correlation between academic performance in boards, JEE and IITK, as measured by percentage, JEE Advance All India rank and CPI respectively.
+Based on the responses to these we tried to extract basic insights about possible correlation between academic performance in boards, JEE and IITK, as measured by percentage, JEE Advanced All India rank and CPI respectively.
 
 It had the following questions:
 
@@ -222,7 +222,29 @@ We observe that there is negligible correlation, according to both methods of me
 ## JEE Main and Advance ranks
 
 ```{r}
+#| echo: false
+main <- as.numeric(data[,5])
+adv <- as.numeric(data[,6])
 print( paste("Spearman's rank correlation: "), cor(adv, main, use="complete.obs", method = "spearman"))
 ```
 
 As expected, there is a relatively high degree of correlation between JEE Main and Advance ranks, measured according to Spearman's rank correlation.
+
+## CPI and JEE Advanced ranks
+
+```{r}
+#| echo: false
+print( paste("Spearman's rank correlation: "), cor(adv, cpi, use="complete.obs", method = "spearman"))
+```
+
+There is a low to moderate level correlation between CPI and JEE advance rank. The negative sign indicates that lower in magnitude JEE Advanced rank in general correlates to some extent with higher CPI.
+
+## CPI and JEE Mains ranks
+
+```{r}
+#| echo: false
+print( paste("Spearman's rank correlation: "), cor(main, cpi, use="complete.obs", method = "spearman"))
+
+```
+
+There is again, a low to moderate level correlation between CPI and JEE Mains rank. The negative sign indicates that lower in magnitude JEE Mains rank in general correlates to some extent with higher CPI. The correlation in this case is lower in magnitude than that of CPI with JEE Advance rank.
