@@ -59,6 +59,17 @@ print(max(class10))
 boxplot(class10, main = "Class 10 Percentage Boxplot", ylab = "Percentage")
 ```
 
+The histogram does not taper at extremes, and is in fact quite flat, except a peak at 96-97%. This indicates that the distribution of 10th marks is quite different from those variables that do.
+
+```{r}
+#| echo: false
+
+bins <- 88:100
+
+hist(class10, bins, main = "Distribution of 10th %ages", cex.main = 1)
+
+```
+
 ## Class 12 percentage
 
 We now look the mean, median, and the minimum and maximum values of class 12 percentage. We also look at the distribution's quartiles and check for outliers through a boxplot.
@@ -78,7 +89,7 @@ print(max(class12))
 boxplot(class12, main = "Current class 12 Percentage Boxplot", ylab = "Percentage")
 ```
 
-We can also inspect the distribution through a histogram and see that it tapers at extremes, as we would expect. It is somewhat left skewed, with the modal class being 94-96.
+We can also inspect the distribution through a histogram and see that it tapers at extremes. It is somewhat left skewed, with the modal class being 94-96.
 
 ```{r}
 #| echo: false
@@ -105,7 +116,7 @@ boxplot(cpi, main = "Current CPI Boxplot", ylab = "CPI")
 
 ```
 
-We can also look at the distribution through a histogram and see that it is higher in the middle and tapers at extremes, as we would expect.
+We can also look at the distribution through a histogram and see that it is higher in the middle and tapers at extremes.
 
 ```{r}
 #| echo: false
@@ -114,8 +125,13 @@ hist(cpi, main = "Distribution of CPIs", cex.main = 1)
 
 ```
 
+## JEE Mains rank
+
+Since this is discrete data that deals with ranking, we treat it differently than the last 3 fields.
+
 ```{r}
 #| echo: false
+main <- data[,5]
 
 ```
 
