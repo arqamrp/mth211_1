@@ -47,7 +47,7 @@ We now look the mean, median, and the minimum and maximum values of class 10 per
 ```{r}
 #| echo: false
 print("Average Class 10 Percentage:")
-class10 <- as.numeric(data[-8,2]) #8th entry is in cgpa
+class10 <- as.numeric(data[,2])
 print(mean(class10))
 print("Median Class 10 Percentage:")
 print(median(class10))
@@ -185,3 +185,44 @@ print(mean(currHr))
 Most of the students think that their performance has remained same or got worse.
 
 ![](Screenshot%20(389).png)
+
+# Correlation analysis
+
+## Class 12th and 10th percentages
+
+```{r}
+#| echo: false
+print( paste("Pearson's correlation coefficient: "), cor(class12, class10, use="complete.obs"))
+print( paste("Spearman's rank correlation: "), cor(class12, class10, use="complete.obs", method = "spearman"))
+
+```
+
+We observe that there is moderate correlation, according to both methods of measuring correlation, in 10th and 12th percentages.
+
+## CPI and Class 10th percentage
+
+```{r}
+#| echo: false
+print( paste("Pearson's correlation coefficient: "), cor(cpi, class10, use="complete.obs"))
+print( paste("Spearman's rank correlation: "), cor(cpi, class10, use="complete.obs", method = "spearman"))
+```
+
+We again observe that there is moderate correlation, according to both methods of measuring correlation, between CPI and 10th percentages.
+
+## CPI and Class 12th percentage
+
+```{r}
+#| echo: false
+print( paste("Pearson's correlation coefficient: "), cor(cpi, class10, use="complete.obs"))
+print( paste("Spearman's rank correlation: "), cor(cpi, class10, use="complete.obs", method = "spearman"))
+```
+
+We observe that there is negligible correlation, according to both methods of measuring correlation, between CPI and 10th percentages.
+
+## JEE Main and Advance ranks
+
+```{r}
+print( paste("Spearman's rank correlation: "), cor(adv, main, use="complete.obs", method = "spearman"))
+```
+
+As expected, there is a relatively high degree of correlation between JEE Main and Advance ranks, measured according to Spearman's rank correlation.
