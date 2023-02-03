@@ -11,7 +11,7 @@ toc: true
 
 The data was collected using a [Google form](https://docs.google.com/forms/d/e/1FAIpQLSed7HoFO2fe1waPy8_l55DD_4hx3z9IlTguyRA7BvAb6YVOvA/viewform).
 
-Based on the responses to these we tried to extract basic insights about possible correlation between academic performance in boards, JEE and IITK, as measured by percentage, JEE Advance All India rank and CPI respectively.
+Based on the responses to these we tried to extract basic insights about possible correlation between academic performance in boards, JEE and IITK, as measured by percentage, JEE Advanced All India rank and CPI respectively.
 
 It had the following questions:
 
@@ -30,7 +30,7 @@ It had the following questions:
 13. How would you compare your academic performance during JEE times vs In IIT? (Ordinal data)
 14. How would you score yourself among fellow batchmates? (Discrete data)
 
-The form received 34 responses, out of which 2 were discarded due to errors in filling the form like missing essential data.
+The form received 34 responses, of which 3 responses had one or more missing numerical fields.
 
 ```{r}
 #| echo: false
@@ -47,7 +47,7 @@ We now look the mean, median, and the minimum and maximum values of class 10 per
 ```{r}
 #| echo: false
 print("Average Class 10 Percentage:")
-class10 <- as.numeric(data[-8,2]) #8th entry is in cgpa
+class10 <- as.numeric(data[,2])
 print(mean(class10))
 print("Median Class 10 Percentage:")
 print(median(class10))
@@ -57,6 +57,17 @@ print("Maximum Class 10 Percentage:")
 print(max(class10))
 
 boxplot(class10, main = "Class 10 Percentage Boxplot", ylab = "Percentage")
+```
+
+The histogram does not taper at extremes, and is in fact quite flat, except a peak at 96-97%. This indicates that the distribution of 10th marks is quite different from those variables that do.
+
+```{r}
+#| echo: false
+
+bins <- 88:100
+
+hist(class10, bins, main = "Distribution of 10th %ages", cex.main = 1)
+
 ```
 
 ## Class 12 percentage
@@ -78,7 +89,7 @@ print(max(class12))
 boxplot(class12, main = "Current class 12 Percentage Boxplot", ylab = "Percentage")
 ```
 
-We can also inspect the distribution through a histogram and see that it tapers at extremes, as we would expect. It is somewhat left skewed, with the modal class being 94-96.
+We can also inspect the distribution through a histogram and see that it tapers at extremes. It is somewhat left skewed, with the modal class being 94-96.
 
 ```{r}
 #| echo: false
@@ -105,7 +116,7 @@ boxplot(cpi, main = "Current CPI Boxplot", ylab = "CPI")
 
 ```
 
-We can also look at the distribution through a histogram and see that it is higher in the middle and tapers at extremes, as we would expect.
+We can also look at the distribution through a histogram and see that it is higher in the middle and tapers at extremes.
 
 ```{r}
 #| echo: false
@@ -114,53 +125,48 @@ hist(cpi, main = "Distribution of CPIs", cex.main = 1)
 
 ```
 
-```{r}
-#| echo: false
-v<-data[,7]
-pie(table(v), main="Exams Given")
-```
+## Coaching Taken
 
 ```{r}
 #| echo: false
 v<-data[,8]
 pie(table(v), main="Coaching Taken")
 
-
 ```
+
+## Type of Course
 
 ```{r}
 #| echo: false
-
 v<-data[,9]
 pie(table(v), main="Type of Course")
-
 ```
 
-![](Screenshot%20(381).png)
+## Place of coaching
 
 ```{r}
 #| echo: false
 v<-data[,10]
 pie(table(v), main="Place of Coaching")
 
-
 ```
+
+## Total attempts
 
 ```{r}
 #| echo: false
 v<-data[,11]
 pie(table(v), main="Total Attempts")
-
-
 ```
+
+## Study time
 
 ```{r}
 #| echo: false
 prevHr <- as.numeric(data[-c(15,19,20,27,34),12])
-barplot(table(data[,12]), main="Current Daily Study Time", xlab = "Time in Hrs", ylab = "No. of students ")
+barplot(table(data[,12]), main="Daily Study Time during JEE", xlab = "Time in Hrs", ylab = "No. of students ")
 print("The average study hours during JEE preparation were:")
 print(mean(prevHr))
-#The average study time has decreased to more than half
 ```
 
 ```{r}
@@ -171,11 +177,11 @@ print("The current average study hours are:")
 print(mean(currHr))
 ```
 
+## Perceived change in academic performance
+
 ```{r}
 #| echo: false
-v<-data[,14]
-pie(table(v), main="Coaching Taken")
-
+pie(data[,14], main = "Perceived change")
 
 ```
 
@@ -185,6 +191,67 @@ Most of the students think that their performance has remained same or got worse
 #| echo: false
 v<-data[,15]
 barplot(table(v), main="How does one score themself among their batchmates? ")
+```
 
+# Correlation analysis
+
+## Class 12th and 10th percentages
+
+```{r}
+#| echo: false
+print( paste("Pearson's correlation coefficient: ", cor(class12, class10, use="complete.obs")))
+print( paste("Spearman's rank correlation: ", cor(class12, class10, use="complete.obs", method = "spearman")))
 
 ```
+
+We observe that there is moderate correlation, according to both methods of measuring correlation, in 10th and 12th percentages.
+
+## CPI and Class 10th percentage
+
+```{r}
+#| echo: false
+print( paste("Pearson's correlation coefficient: ", cor(cpi, class10, use="complete.obs")))
+print( paste("Spearman's rank correlation: ", cor(cpi, class10, use="complete.obs", method = "spearman")))
+```
+
+We again observe that there is moderate correlation, according to both methods of measuring correlation, between CPI and 10th percentages.
+
+## CPI and Class 12th percentage
+
+```{r}
+#| echo: false
+print( paste("Pearson's correlation coefficient: ", cor(cpi, class10, use="complete.obs")))
+print( paste("Spearman's rank correlation: ", cor(cpi, class10, use="complete.obs", method = "spearman")))
+```
+
+We observe that there is negligible correlation, according to both methods of measuring correlation, between CPI and 10th percentages.
+
+## JEE Main and Advance ranks
+
+```{r}
+#| echo: false
+main <- as.numeric(data[,5])
+adv <- as.numeric(data[,6])
+print( paste("Spearman's rank correlation: ", cor(adv, main, use="complete.obs", method = "spearman")))
+```
+
+As expected, there is a relatively high degree of correlation between JEE Main and Advance ranks, measured according to Spearman's rank correlation.
+
+## CPI and JEE Advanced ranks
+
+```{r}
+#| echo: false
+print( paste("Spearman's rank correlation: ", cor(adv, cpi, use="complete.obs", method = "spearman")))
+```
+
+There is a low to moderate level correlation between CPI and JEE advance rank. The negative sign indicates that lower in magnitude JEE Advanced rank in general correlates to some extent with higher CPI.
+
+## CPI and JEE Mains ranks
+
+```{r}
+#| echo: false
+print( paste("Spearman's rank correlation: ", cor(main, cpi, use="complete.obs", method = "spearman")))
+
+```
+
+There is again, a low to moderate level correlation between CPI and JEE Mains rank. The negative sign indicates that lower in magnitude JEE Mains rank in general correlates to some extent with higher CPI. The correlation in this case is lower in magnitude than that of CPI with JEE Advance rank.
