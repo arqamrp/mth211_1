@@ -1,17 +1,51 @@
 ---
-title: "Question1"
+title: "MTH211 Assignment 1 Part 1"
+subtitle: "Analysing Academic Performance in Boards, JEE and IITK"
+author: "Arqam Patel, Kumar Kanishk Singh, Aditya Kumar Tiwari"
 format: pdf
 editor: visual
+toc: true
 ---
 
-# Question 1: Student Performance Analysis
+# Data collection
+
+The data was collected using a [Google form](https://docs.google.com/forms/d/e/1FAIpQLSed7HoFO2fe1waPy8_l55DD_4hx3z9IlTguyRA7BvAb6YVOvA/viewform).
+
+Based on the responses to these we tried to extract basic insights about possible correlation between academic performance in boards, JEE and IITK, as measured by percentage, JEE Advance All India rank and CPI respectively.
+
+It had the following questions:
+
+1.  What was your percentage in class 10? (Continuous data: 0-100)
+2.  What was your percentage in class 12? (Continuous data: 0-100)
+3.  What is your current CPI? (Continuous data: 0-10)
+4.  What was your JEE Mains rank (AIR) ? (Discrete, ranking data)
+5.  What was your JEE Advanced rank (AIR)? (Discrete, ranking data)
+6.  Which other exams did you appear for?
+7.  Which Coaching did you take (if any)? (Nominal data)
+8.  Which type of course did you attend at your coaching Institute? (Nominal data)
+9.  Where did you take coaching? (Nominal data)
+10. How many attempts did you take? (Ordinal data)
+11. How many hours did you study on average daily during your JEE preparation? (Continuous data)
+12. How many hours do you study on average daily currently? (Continuous data)
+13. How would you compare your academic performance during JEE times vs In IIT? (Ordinal data)
+14. How would you score yourself among fellow batchmates? (Discrete data)
+
+The form received 34 responses, out of which 2 were discarded due to errors in filling the form like missing essential data.
 
 ```{r}
+#| echo: false
 data <- read.csv("MTH211A Form.csv")
-data
+summary(data)
 ```
 
+# Form responses
+
+## Class 10 percentage
+
+We now look the mean, median, and the minimum and maximum values of class 10 percentage. We also look at the distribution's quartiles and check for outliers through a boxplot.
+
 ```{r}
+#| echo: false
 print("Average Class 10 Percentage:")
 class10 <- as.numeric(data[-8,2]) #8th entry is in cgpa
 print(mean(class10))
@@ -21,9 +55,16 @@ print("Minimum Class 10 Percentage:")
 print(min(class10))
 print("Maximum Class 10 Percentage:")
 print(max(class10))
+
+boxplot(class10, main = "Class 10 Percentage Boxplot", ylab = "Percentage")
 ```
 
+## Class 12 percentage
+
+We now look the mean, median, and the minimum and maximum values of class 12 percentage. We also look at the distribution's quartiles and check for outliers through a boxplot.
+
 ```{r}
+#| echo: false
 print("Average Class 12 Percentage:")
 class12 <- as.numeric(data[,3])
 print(mean(class12))
@@ -33,9 +74,23 @@ print("Minimum Class 12 Percentage:")
 print(min(class12))
 print("Maximum Class 12 Percentage:")
 print(max(class12))
+
+boxplot(class12, main = "Current class 12 Percentage Boxplot", ylab = "Percentage")
 ```
 
+We can also inspect the distribution through a histogram and see that it tapers at extremes, as we would expect. It is somewhat left skewed, with the modal class being 94-96.
+
 ```{r}
+#| echo: false
+hist(class12, main = "Distribution of 12th %ages", cex.main = 1)
+```
+
+## CPI 
+
+We now look the mean, median, and the minimum and maximum values of CPI. We also look at the distribution's quartiles and check for outliers through a boxplot.
+
+```{r}
+#| echo: false
 print("Average CPI:")
 cpi <- as.numeric(data[,4])
 print(mean(cpi))
@@ -45,18 +100,37 @@ print("Minimum CPI:")
 print(min(cpi))
 print("Maximum CPI:")
 print(max(cpi))
-```
 
-```{r}
-boxplot(class10, main = "Class 10 Percentage Boxplot", ylab = "Percentage")
-```
-
-```{r}
-boxplot(class12, main = "Current class 12 Percentage Boxplot", ylab = "Percentage")
-```
-
-```{r}
 boxplot(cpi, main = "Current CPI Boxplot", ylab = "CPI")
+
+```
+
+We can also look at the distribution through a histogram and see that it is higher in the middle and tapers at extremes, as we would expect.
+
+```{r}
+#| echo: false
+
+hist(cpi, main = "Distribution of CPIs", cex.main = 1)
+
+```
+
+```{r}
+#| echo: false
+
+```
+
+```{r}
+#| echo: false
+
+
+
+```
+
+```{r}
+#| echo: false
+
+
+
 ```
 
 ![](Screenshot%20(381).png)
@@ -74,6 +148,7 @@ boxplot(cpi, main = "Current CPI Boxplot", ylab = "CPI")
 ![](Screenshot%20(386).png)
 
 ```{r}
+#| echo: false
 prevHr <- as.numeric(data[-c(15,19,20,27,34),12])
 print("The average study hours during JEE preparation were:")
 print(mean(prevHr))
@@ -83,6 +158,7 @@ print(mean(prevHr))
 ![](Screenshot%20(387).png)
 
 ```{r}
+#| echo: false
 currHr <- as.numeric(data[-c(11,15,19,20,34),13])
 print("The current average study hours are:")
 print(mean(currHr))
